@@ -31,7 +31,7 @@ pipeline {
             userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]]
           )
         container('gradle') {
-         sh "gradlew clean build"
+         gradlew clean build
         }
       }
     }    
