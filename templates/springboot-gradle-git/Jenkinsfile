@@ -20,11 +20,6 @@ pipeline {
   }
   stages {
     stage("Checkout") {
-      agent {
-        node {
-          label 'default'
-        }
-      }
       steps {
         checkout([$class: "GitSCM", 
           branches: [[name: "${branchName}"]], 
@@ -36,13 +31,10 @@ pipeline {
       }
     }
     stage("Build") {
-      agent {
-        node {
-          label 'default'
-        }
-      }
       steps {
-        sh "gradlew clean build"      
+          container('gradel') {
+            sh "gradlew clean build"
+          }
       }
     }    
   }
