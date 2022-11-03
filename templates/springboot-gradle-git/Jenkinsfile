@@ -30,7 +30,8 @@ pipeline {
         }
       }
       steps {
-        sh "gradlew clean build"
+        sh "echo gradlew clean build"
+        sh "env"
       }
     }    
   }
