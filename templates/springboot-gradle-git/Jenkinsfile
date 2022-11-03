@@ -15,6 +15,12 @@ pipeline {
         '''
     }
   }
+  options {
+    durabilityHint("PERFORMANCE_OPTIMIZED")
+    timeout(time: 3, unit: "DAYS")
+    disableConcurrentBuilds()
+    skipDefaultCheckout true
+  }  
   stages {
     stage("Checkout and Build") {
       steps {
