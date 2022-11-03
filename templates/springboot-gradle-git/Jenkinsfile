@@ -32,10 +32,7 @@ pipeline {
           )
         container('gradle') {
          sh "env"
-         sh "ls -R /opt/gradle"
-         sh "pwd"
-         sh "ls -R /home/gradle"
-         sh "gradlew clean build"
+         sh "/opt/gradle/bin/gradle clean build"
         }
       }
     }    
