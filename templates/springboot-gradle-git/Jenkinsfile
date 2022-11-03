@@ -24,7 +24,6 @@ pipeline {
   stages {
     stage("Checkout and Build") {
       steps {
-        container('default') {
           checkout([$class: "GitSCM", 
             branches: [[name: "${branchName}"]], 
             doGenerateSubmoduleConfigurations: false, 
@@ -32,7 +31,6 @@ pipeline {
             submoduleCfg: [], 
             userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]]
           )
-        }
         container('gradel') {
          sh "gradlew clean build"
         }
