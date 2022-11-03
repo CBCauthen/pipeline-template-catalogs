@@ -32,6 +32,12 @@ pipeline {
       steps {
         sh "echo gradlew clean build"
         sh "env"
+        sh "echo *****************************************"
+        sh "echo"
+        sh "which javac"
+        sh "java -version"
+        sh "which maven"
+        sh "echo *****************************************"        
       }
     }    
   }
