@@ -1,3 +1,4 @@
+running sample
 pipeline {
   agent {
     kubernetes {
@@ -14,26 +15,22 @@ pipeline {
         '''
     }
   }
-  options {
-    durabilityHint("PERFORMANCE_OPTIMIZED")
-    timeout(time: 3, unit: "DAYS")
-    disableConcurrentBuilds()
-    skipDefaultCheckout true
-  }
   stages {
     stage("Checkout and Build") {
       steps {
-        checkout([$class: "GitSCM", 
-          branches: [[name: "${branchName}"]], 
-          doGenerateSubmoduleConfigurations: false, 
-          extensions: [], 
-          submoduleCfg: [], 
-          userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]]
-        )
+        container('default') {
+          checkout([$class: "GitSCM", 
+            branches: [[name: "${branchName}"]], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]]
+          )
+        }
+        container('gradel') {
+         sh "gradlew clean build"
+        }
       }
-         container('gradel') {
-           sh "gradlew clean build"
-          }
     }    
   }
 }
