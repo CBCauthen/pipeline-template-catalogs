@@ -30,7 +30,7 @@ pipeline {
             submoduleCfg: [], 
             userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]]
           )
-        container('gradel') {
+        container('gradle') {
          sh "gradlew clean build"
         }
       }
