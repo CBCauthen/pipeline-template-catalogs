@@ -18,7 +18,7 @@ pipeline {
           doGenerateSubmoduleConfigurations: false, 
           extensions: [], 
           submoduleCfg: [], 
-          userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]]
+          userRemoteConfigs: [[credentialsId: "${gitCredentials}", url: "${repoUrl}"]]
         )
       }
     }
@@ -32,5 +32,4 @@ pipeline {
       }
     }    
   }
-}    
 }
