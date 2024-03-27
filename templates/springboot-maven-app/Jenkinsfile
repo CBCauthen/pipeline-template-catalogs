@@ -5,7 +5,6 @@ pipeline {
           steps {
             echo "${previewEnvHostname}"
             echo "${emailRecipient}"
-            sh "echo ./mvnw clean install"
           }
         }
     }
